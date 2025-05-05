@@ -64,12 +64,13 @@ app.post('/reviews', async (req, res) => {
 
 // Serve static frontend (React built files)
 const frontendPath = path.join(__dirname, 'public');
+// Serve static frontend
 app.use(express.static(frontendPath));
 
-// React Router fallback
-app.get('*', (req, res) => {
-  res.sendFile(path.join(frontendPath, 'index.html'));
-});
+// React Router fallback for any route under "/"
+app.all('/*splat', (req, res) => {
+    res.sendFile(path.join(frontendPath, 'index.html'));
+  });
 
 // Start server
 const port = process.env.PORT || 5000;
