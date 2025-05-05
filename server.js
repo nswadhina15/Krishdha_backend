@@ -20,14 +20,8 @@ app.use(json()); // For JSON parsing
 app.use(cors()); // Enable CORS
 
 // MongoDB connection
-connect(
-  process.env.MONGODB_URI ||
-    'mongodb+srv://krishdhainfo:vqdNHaH0leXADudL@krishdha.50ju2qs.mongodb.net/Review?retryWrites=true&w=majority',
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  }
-)
+connect(process.env.MONGODB_URI)
+
   .then(() => console.log('✅ Connected to MongoDB Atlas'))
   .catch((err) => console.error('❌ MongoDB connection error:', err));
 
